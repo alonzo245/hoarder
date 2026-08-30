@@ -16,15 +16,15 @@ export type Category = {
   name: string;
 };
 
-export type Currency = 'USD' | 'EUR' | 'GBP' | 'ILS';
+export type Currency = 'ILS' | 'USD' | 'EUR' | 'GBP';
 
-export const CURRENCIES: Currency[] = ['USD', 'EUR', 'GBP', 'ILS'];
+export const CURRENCIES: Currency[] = ['ILS', 'USD', 'EUR', 'GBP'];
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
+  ILS: '₪',
   USD: '$',
   EUR: '€',
   GBP: '£',
-  ILS: '₪',
 };
 
 export type SortOption = 'newest' | 'oldest' | 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc';

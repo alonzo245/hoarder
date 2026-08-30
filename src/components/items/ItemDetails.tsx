@@ -57,10 +57,6 @@ export function ItemDetails({ item, categories, onEdit, onDelete }: ItemDetailsP
 
       <div>
         <h2 className="text-3xl font-bold text-gray-900 mb-2">{item.name}</h2>
-        
-        {item.description && (
-          <p className="text-gray-700 leading-relaxed">{item.description}</p>
-        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
