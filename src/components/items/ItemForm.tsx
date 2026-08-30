@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Item, Category, CURRENCIES, Currency } from '../../types/inventory';
-import { Input, Textarea, Select } from '../ui/Input';
+import { Input, Select } from '../ui/Input';
 import { Button } from '../ui/Button';
 
 interface ItemFormProps {
@@ -12,9 +12,8 @@ interface ItemFormProps {
 
 export function ItemForm({ item, categories, onSubmit, onCancel }: ItemFormProps) {
   const [name, setName] = useState(item?.name || '');
-  const [description, setDescription] = useState(item?.description || '');
   const [price, setPrice] = useState(item?.price?.toString() || '');
-  const [currency, setCurrency] = useState<Currency>(item?.currency as Currency || 'USD');
+  const [currency, setCurrency] = useState<Currency>(item?.currency as Currency || 'ILS');
   const [imageUrl, setImageUrl] = useState(item?.imageUrl || '');
   const [purchaseDate, setPurchaseDate] = useState(item?.purchaseDate || '');
   const [selectedCategories, setSelectedCategories] = useState<string[]>(item?.categoryIds || []);
@@ -43,7 +42,6 @@ export function ItemForm({ item, categories, onSubmit, onCancel }: ItemFormProps
 
     const formData: Omit<Item, 'id' | 'createdAt' | 'updatedAt'> = {
       name: name.trim(),
-      description: description.trim() || undefined,
       price: price ? Number(price) : undefined,
       currency,
       imageUrl: imageUrl.trim() || undefined,
@@ -71,15 +69,6 @@ export function ItemForm({ item, categories, onSubmit, onCancel }: ItemFormProps
         onChange={e => setName(e.target.value)}
         error={errors.name}
         placeholder="e.g., MacBook Pro"
-      />
-
-      <Textarea
-        label="Description"
-        name="description"
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        rows={3}
-        placeholder="Optional notes about this item..."
       />
 
       <div className="grid grid-cols-2 gap-4">
